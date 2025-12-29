@@ -1,0 +1,36 @@
+# ===== GLOBAL =====
+*.log
+*.tmp
+*.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+.env
+.env.*
+
+
+
+# =======================
+# .NET (Dairyncia-dotnet)
+# =======================
+Dairyncia-dotnet/bin/
+Dairyncia-dotnet/obj/
+Dairyncia-dotnet/.vs/
+Dairyncia-dotnet/*.user
+Dairyncia-dotnet/*.suo
+Dairyncia-dotnet/appsettings.Development.json
+Dairyncia-dotnet/logs/
+# Optional: ignore global config files
+*.ldb
+
+
+# ======================
+# BACKUP / TEMP FILES
+# ======================
+*.bak
+*.old
+*.orig
+*.tmp
+*.cache
+
