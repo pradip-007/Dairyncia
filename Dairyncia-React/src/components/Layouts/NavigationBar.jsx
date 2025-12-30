@@ -10,6 +10,7 @@ export function NavigationBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -78,7 +79,8 @@ export function NavigationBar() {
             </Nav>
 
             <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-              {!isAuthenticated ? (
+              {(!isAuthenticated && location.pathname !== "/signup") ? (
+                <>
                 <Button 
                   as={Link} 
                   to="/login" 
@@ -86,13 +88,20 @@ export function NavigationBar() {
                 >
                   Login
                 </Button>
-              ) : (
+                <Button 
+                  as={Link}
+                  to="/signup"
+                  className="btn-primary-custom">
+                    SignUp
+                </Button>
+                </>
+              ) : ((location.pathname!=="/signup")?
                 <Button 
                   onClick={handleLogout} 
                   className="btn-outline-custom"
                 >
-                  Logout
-                </Button>
+                  {(location.pathname==="/signup")?"":"Logout"}
+                </Button>:""
               )}
             </div>
           </Offcanvas.Body>

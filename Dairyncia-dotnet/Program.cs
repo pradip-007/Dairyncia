@@ -83,6 +83,15 @@ builder.Services.AddAuthorization();
 // =====================================================
 builder.Services.AddControllers();
 
+//cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactApp",
+        policy => policy.WithOrigins("http://localhost:5173")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
+
 // =====================================================
 // SWAGGER + JWT SUPPORT
 // =====================================================
@@ -153,7 +162,8 @@ if (app.Environment.IsDevelopment())
 // If HTTPS causes ERR_SSL_PROTOCOL_ERROR during testing,
 // COMMENT THIS LINE TEMPORARILY
 // app.UseHttpsRedirection();
-app.UseCors("AllowReactApp");
+
+app.UseCors("ReactApp");
 app.UseAuthentication();   // MUST be before Authorization
 app.UseAuthorization();
 
