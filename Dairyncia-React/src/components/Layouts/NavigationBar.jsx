@@ -67,9 +67,9 @@ export function NavigationBar() {
               {isAuthenticated && userRole === 'customer' && (
                 <Nav.Link as={Link} to="/customer-dashboard" className="custom-nav-link">Dashboard</Nav.Link>
               )}
-              {isAuthenticated && userRole === 'admin' && (
+              {/* {isAuthenticated && userRole === 'admin' && ( */}
                 <Nav.Link as={Link} to="/admin-dashboard" className="custom-nav-link">Admin</Nav.Link>
-              )}
+              {/* )} */}
               
               <Nav.Link as={Link} to="/services" className="custom-nav-link">Services</Nav.Link>
               <Nav.Link as={Link} to="/products" className="custom-nav-link">Products</Nav.Link> 

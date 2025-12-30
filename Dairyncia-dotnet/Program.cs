@@ -19,6 +19,21 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
+
+// cors 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
 // =====================================================
 // IDENTITY
 // =====================================================
@@ -138,10 +153,9 @@ if (app.Environment.IsDevelopment())
 // If HTTPS causes ERR_SSL_PROTOCOL_ERROR during testing,
 // COMMENT THIS LINE TEMPORARILY
 // app.UseHttpsRedirection();
-
+app.UseCors("AllowReactApp");
 app.UseAuthentication();   // MUST be before Authorization
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();
