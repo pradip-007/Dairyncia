@@ -13,7 +13,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<BankDetails> BankDetails { get; set; }
     public DbSet<DairyCenter> DairyCenters { get; set; }
 
-
+    public DbSet<Address> Addresses { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
