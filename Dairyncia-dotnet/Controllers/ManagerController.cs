@@ -7,11 +7,11 @@ namespace Dairyncia.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FarmerController : ControllerBase
+    public class ManagerController : ControllerBase
     {
         public readonly AppDbContext _context;
 
-        public FarmerController(AppDbContext context)
+        public ManagerController(AppDbContext context)
         {
             _context = context;
         }
