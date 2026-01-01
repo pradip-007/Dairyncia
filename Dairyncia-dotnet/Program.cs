@@ -107,6 +107,21 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // =====================================================
+// CORS (REACT FRONTEND)
+// =====================================================
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
+// =====================================================
 // BUILD APP
 // =====================================================
 var app = builder.Build();
@@ -114,16 +129,16 @@ var app = builder.Build();
 // =====================================================
 // SEED ROLES + ADMIN USER (CRITICAL)
 // =====================================================
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
+//using (var scope = app.Services.CreateScope())
+//{
+ //   var services = scope.ServiceProvider;
 
-    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+   // var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    //var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
-    await SeedData.SeedRoles(roleManager);
-    await SeedData.SeedAdminUser(userManager);
-}
+    //await SeedData.SeedRoles(roleManager);
+    //await SeedData.SeedAdminUser(userManager);
+//}
 
 // =====================================================
 // MIDDLEWARE PIPELINE
@@ -138,7 +153,7 @@ if (app.Environment.IsDevelopment())
 // If HTTPS causes ERR_SSL_PROTOCOL_ERROR during testing,
 // COMMENT THIS LINE TEMPORARILY
 // app.UseHttpsRedirection();
-
+app.UseCors("AllowReactApp");
 app.UseAuthentication();   // MUST be before Authorization
 app.UseAuthorization();
 
