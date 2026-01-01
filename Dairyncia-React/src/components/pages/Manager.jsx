@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import ManagerDashboard from "../Manager/ManagerDashboard";
 import FarmerList from "../admin/FarmerList";
 import MilkCollectionList from "../admin/MilkCollectionList";
+import AddMilkModal from "../Manager/AddMilkModal";
+import TodaysMilkCollectionList from "../Manager/TodaysMilkCollectionList"
 import "./Manager.css";
 
 const Manager = () => {
-    const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState("home");
+  const [showModal, setShowModal] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-    return (
-      <div className="manager-page" >
-        <ul className=" mt-5 nav nav-tabs">
+   const handleMilkAdded = () => {
+    setShowModal(false);
+    setRefreshKey(prev => prev + 1); // trigger refresh
+  };
+
+  return (
+    <div className="manager-page">
+
+      <ul className=" mt-5 nav nav-tabs">
           <li className="nav-item">
             <button
               className={`nav-link ${activeTab === "home" ? "active" : ""}`}
@@ -28,25 +38,49 @@ const Manager = () => {
             </button>
           </li>
 
-          {/*  NEW TAB */}
           <li className="nav-item">
             <button
               className={`nav-link ${activeTab === "milk" ? "active" : ""}`}
               onClick={() => setActiveTab("milk")}
             >
-              Milk Collections
+              Total Milk Collections
+            </button>
+          </li>
+
+          <li className="nav-item">
+            <button
+              className={`nav-link ${activeTab === "todaysMilk" ? "active" : ""}`}
+              onClick={() => setActiveTab("todaysMilk")}>
+              Todays Milk Collection
             </button>
           </li>
         </ul>
 
-        <div className="tab-content mt-4">
-          {activeTab == "home" && <ManagerDashboard />}
-          {activeTab == "farmers" && <FarmerList />}
-          {activeTab == "milk" && <MilkCollectionList />}
-        </div>
-        
+      {activeTab === "todaysMilk"&& (
+        <button
+          style={{ marginTop: 20 }}
+          className="btn btn-success"
+          onClick={() => setShowModal(true)}
+        >
+          + Add Milk Collection
+        </button>
+      )}
+
+      <div className="mt-4">
+        {activeTab === "home" && <ManagerDashboard />}
+        {activeTab === "farmers" && <FarmerList />}
+        {activeTab === "milk" && <MilkCollectionList refreshKey={refreshKey} />}
+        {activeTab === "todaysMilk" && <TodaysMilkCollectionList refreshKey={ refreshKey }/>}
       </div>
+
+      {showModal && (
+        <AddMilkModal
+          onClose={() => setShowModal(false)}
+          onSuccess={handleMilkAdded}
+        />
+      )}
+    </div>
   );
-}
+};
 
 export default Manager;

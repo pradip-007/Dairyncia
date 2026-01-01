@@ -26,9 +26,6 @@ public class MilkRateHelper
             .Select(x => x.Rate)
             .FirstOrDefaultAsync();
 
-        if (rate == 0)
-            throw new Exception($"Rate not found for FAT:{fat}, SNF:{snf}");
-
         return rate;
     }
 

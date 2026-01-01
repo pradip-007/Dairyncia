@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace Dairyncia.Controllers
 {
     [ApiController]
-    [Route("api/milk-collection")]
+    [Route("api/manager/milk-collection")]
     [Authorize(Roles = "Manager,Admin")]
     public class MilkCollectionController : ControllerBase
     {
@@ -69,6 +69,11 @@ namespace Dairyncia.Controllers
             var ratePerLiter = await _milkRateHelper
                 .GetRatePerLiter(dto.FatPercentage, dto.SNF, dto.MilkType);
 
+            if (ratePerLiter == 0)
+            {
+                return NotFound($"Rate not found for FAT:{dto.FatPercentage}, SNF:{dto.SNF}");
+            }
+
             // Create MilkCollection Entity
             var milkCollection = new MilkCollection
             {
@@ -125,7 +130,40 @@ namespace Dairyncia.Controllers
             return Ok(data);
         }
 
-          
+        [HttpGet("todays")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> GetTodaysMilkCollections()
+        {
+            var today = DateTime.Today;
+            var tomorrow = today.AddDays(1);
+
+            var data = await _context.MilkCollections
+                .Include(m => m.Farmer).ThenInclude(f => f.User)
+                .Include(m => m.Manager)
+                .Where(c => c.CreatedAt >= today &&
+                    c.CreatedAt < tomorrow)
+                .OrderByDescending(m => m.CreatedAt)
+                .Select(m => new
+                {
+                    m.Id,
+                    Farmer = m.Farmer.User.FullName,
+                    Manager = m.Manager.FullName,
+                    m.MilkType,
+                    m.MilkShift,
+                    m.Quantity,
+                    m.FatPercentage,
+                    m.SNF,
+                    m.RatePerLiter,
+                    m.TotalAmount,
+                    m.PaymentStatus,
+                    m.CreatedAt
+                })
+                .ToListAsync();
+
+            return Ok(data);
+        }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMilkCollectionById(int id)
         {
