@@ -62,7 +62,7 @@ export function Login(){
             let message = "Something went wrong";
 
             if (error.response) {
-                message = error.response.data?.message || "Server error";
+                message = error.response?.data[0].description || "Server error";
             } else if (error.request) {
                 message = "Network error. Please check your connection.";
             } else {
