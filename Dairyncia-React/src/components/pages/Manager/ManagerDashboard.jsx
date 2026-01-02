@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Manager_BASE_URL } from "../../../constants/ApiConstants";
+import { Manager_BASE_URL } from "../../../../constants/ApiConstants";
 
 const ManagerDashboard = () => {
   const [farmers, setFarmers] = useState([]);

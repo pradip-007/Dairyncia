@@ -7,6 +7,7 @@ import Admin from "../src/components/pages/Admin";
 import { Signup } from './components/pages/SignUp';
 import { Login } from './components/pages/Login';
 import Manager from './components/pages/Manager';
+import ProtectedRoute from "./components/pages/ProtectedRoute";
 
 function App() {
   return (
@@ -16,10 +17,14 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="admin-dashboard" element={<Admin />} />
+          <Route element={<ProtectedRoute allowedRoles={"Admin"}/>}>
+            <Route path="admin-dashboard" element={<Admin />} />
+          </Route>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="manager-dashboard" element={<Manager />} />
+          <Route element={<ProtectedRoute allowedRoles={"Manager"}/>}>
+            <Route path="manager-dashboard" element={<Manager />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

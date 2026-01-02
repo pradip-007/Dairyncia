@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import PendingUsers from "../admin/PendingUsers";
-import FarmerList from "../admin/FarmerList";
-import ManagerList from "../admin/ManagerList";
-import MilkCollectionList from "../admin/MilkCollectionList";
+import PendingUsers from "./admin/PendingUsers";
+import FarmerList from "./admin/FarmerList";
+import ManagerList from "./admin/ManagerList";
+import MilkCollectionList from "./admin/MilkCollectionList";
 
 import "./Admin.css";
 

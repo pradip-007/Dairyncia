@@ -73,15 +73,15 @@ export function NavigationBar() {
             <Nav className="justify-content-center flex-grow-1 pe-3 nav-links-container">
               <Nav.Link as={Link} to="/" className="custom-nav-link">Home</Nav.Link>
 
-              {isAuthenticated && userRole.toLowerCase() === 'customer' && (
-                <Nav.Link as={Link} to="/customer-dashboard" className="custom-nav-link">Dashboard</Nav.Link>
+              {isAuthenticated && userRole.toLowerCase() === 'farmer' && (
+                <Nav.Link as={Link} to="/farmer-dashboard" className="custom-nav-link">Dashboard</Nav.Link>
               )}
               {isAuthenticated && userRole.toLowerCase() === 'manager' && (
                 <Nav.Link as={Link} to="/manager-dashboard" className="custom-nav-link">Dashboard</Nav.Link>
               )}
-              {/* {isAuthenticated && userRole === 'admin' && ( */}
-                <Nav.Link as={Link} to="/admin-dashboard" className="custom-nav-link">Admin</Nav.Link>
-              {/* )} */}
+              { isAuthenticated && userRole.toLowerCase() === 'admin' && ( 
+                <Nav.Link as={Link} to="/admin-dashboard" className="custom-nav-link">Dashboard</Nav.Link>
+               )} 
               
               <Nav.Link as={Link} to="/services" className="custom-nav-link">Services</Nav.Link>
               <Nav.Link as={Link} to="/products" className="custom-nav-link">Products</Nav.Link> 

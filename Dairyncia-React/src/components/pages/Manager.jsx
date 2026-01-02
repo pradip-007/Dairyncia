@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ManagerDashboard from "../Manager/ManagerDashboard";
-import FarmerList from "../admin/FarmerList";
-import MilkCollectionList from "../admin/MilkCollectionList";
-import AddMilkModal from "../Manager/AddMilkModal";
-import TodaysMilkCollectionList from "../Manager/TodaysMilkCollectionList"
+import ManagerDashboard from "../pages/Manager/ManagerDashboard";
+import FarmerList from "./admin/FarmerList";
+import MilkCollectionList from "./admin/MilkCollectionList";
+import AddMilkModal from "../pages/Manager/AddMilkModal";
+import TodaysMilkCollectionList from "../pages/Manager/TodaysMilkCollectionList"
 import "./Manager.css";
 
 const Manager = () => {
