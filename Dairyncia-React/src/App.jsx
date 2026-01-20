@@ -8,6 +8,7 @@ import { Signup } from './components/pages/SignUp';
 import { Login } from './components/pages/Login';
 import Manager from './components/pages/Manager';
 import ProtectedRoute from "./components/pages/ProtectedRoute";
+import Farmer from "./components/pages/Farmer";
 
 function App() {
   return (
@@ -25,6 +26,11 @@ function App() {
           <Route element={<ProtectedRoute allowedRoles={"Manager"}/>}>
             <Route path="manager-dashboard" element={<Manager />} />
           </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={"Farmer"} />}>
+            <Route path="farmer-dashboard" element={<Farmer />} />
+          </Route>
+
         </Route>
       </Routes>
     </BrowserRouter>

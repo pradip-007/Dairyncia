@@ -178,6 +178,7 @@ if (app.Environment.IsDevelopment())
 // If HTTPS causes ERR_SSL_PROTOCOL_ERROR during testing,
 // COMMENT THIS LINE TEMPORARILY
 // app.UseHttpsRedirection();
+app.UseRouting();
 app.UseCors("AllowReactApp");
 app.UseAuthentication();   // MUST be before Authorization
 app.UseAuthorization();

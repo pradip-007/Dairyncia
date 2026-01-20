@@ -24,6 +24,7 @@
 .login-card {
   background: linear-gradient(150deg, #ffffff 0%, var(--accent-color) 50%,var(--secondary-color) 100%) ;
   backdrop-filter: blur(8px);
+  padding-inline: 20px;
   transition: all 0.3s ease-in-out;
 }
 

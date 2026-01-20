@@ -19,6 +19,8 @@ const ProtectedRoute = ({ allowedRoles }) => {
         return <Navigate to="/admin-dashboard" replace />;
     } else if (userRole === 'manager') {
         return <Navigate to="/manager-dashboard" replace />;
+    } else if(userRole ==='farmer'){
+        return <Navigate to="/farmer-dashboard" replace />;
     }
     return <Navigate to="/" replace />;
   }

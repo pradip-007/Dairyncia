@@ -48,21 +48,15 @@ export function Login(){
             else if( res.data.role.toLowerCase() === "manager" ){
                 navigate("/manager-dashboard")
             }
-            else{
-                const customerData = {
-                    id: res.data.id,
-                    firstName: res.data.username,
-                    email: res.data.email
-                };
-                localStorage.setItem("farmer"/*, JSON.stringify(customerData)*/);
-                navigate("/farmer-dashboard");
+            else if( res.data.role.toLowerCase() === "farmer" ){
+                navigate("/farmer-dashboard")
             }
         }
         catch(error){
             let message = "Something went wrong";
 
             if (error.response) {
-                message = error.response?.data[0].description || "Server error";
+                message = error.response.data?.message || "Server error";
             } else if (error.request) {
                 message = "Network error. Please check your connection.";
             } else {
@@ -112,7 +106,7 @@ export function Login(){
                                 </Alert>
                             )}
                             <BootstrapForm.Group className="mb-3" controlId="formEmail">
-                            <BootstrapForm.Label>Email address</BootstrapForm.Label>
+                            
                             <Field
                                 type="email"
                                 name="email"
@@ -128,7 +122,7 @@ export function Login(){
                             </BootstrapForm.Group>
 
                             <BootstrapForm.Group className="mb-3" controlId="formPassword">
-                            <BootstrapForm.Label>Password</BootstrapForm.Label>
+                            
                             <InputGroup>
                                 <Field
                                     type={showPassword ? "text" : "password"}
@@ -166,7 +160,7 @@ export function Login(){
                                     'Login'
                                 )}
                             </Button>
-                            <div className="d-flex justify-content-end align-items-center gap-2 mx-2 mt-1">
+                            <div className="d-flex justify-content-end align-items-center gap-2 mx-2 mt-3">
                                <p className="mb-0">Dont have an account</p>
                                <Button className="btn-outline-secondary" size="sm" onClick={()=>{navigate("/signup")}}>Signup</Button>
                             </div>

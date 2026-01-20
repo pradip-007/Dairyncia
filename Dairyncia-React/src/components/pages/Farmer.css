@@ -1,0 +1,79 @@
+.farmer-page {
+  padding: 35px;
+  background: #f4fdf8;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  background: linear-gradient(to right, #2ecc71, #27ae60);
+  border-radius: 18px;
+  padding: 25px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  margin-bottom: 40px;
+}
+
+.profile-left img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: white;
+  padding: 6px;
+}
+
+.profile-right h2 {
+  margin-bottom: 8px;
+}
+
+.profile-right p {
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* ===== MILK RECORDS ===== */
+.records-section {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.records-section h3 {
+  margin-bottom: 20px;
+  color: #1e8449;
+  font-size: 20px;
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.records-table th {
+  background: #e9f7ef;
+  padding: 12px;
+  text-align: left;
+  color: #145a32;
+}
+
+.records-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.records-table tr:hover {
+  background: #f9fdfb;
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
+}
